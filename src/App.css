@@ -1,0 +1,37 @@
+html .App .card, body .App .card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+html, body {
+  background-color: antiquewhite;
+  font-size: 16px;
+}
+html .App, body .App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #000;
+  border-radius: 1rem;
+}
+html .App .card .input_name,
+html .App .card .input_text, body .App .card .input_name,
+body .App .card .input_text {
+  display: block;
+  width: 100%;
+}
+html .App .card .input_text, body .App .card .input_text {
+  resize: none;
+}
+html .App .card .input_text_collapse_in, body .App .card .input_text_collapse_in {
+  height: 20px;
+}
+html .App .card .input_text_collapse_out, body .App .card .input_text_collapse_out {
+  height: 50px;
+}
+html .App .btn, body .App .btn {
+  width: 50%;
+}
+
+/*# sourceMappingURL=App.css.map */

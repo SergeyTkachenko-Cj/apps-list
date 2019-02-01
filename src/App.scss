@@ -1,0 +1,57 @@
+%flexbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+html, body {
+    background-color: antiquewhite;
+    font-size: 16px;
+
+    .App {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 1px solid #000;
+        border-radius: 1rem;
+
+        .card {
+            @extend %flexbox;
+
+                    .input_name,
+                    .input_text {
+                    display: block;
+                    width: 100%;
+                    // height: 100%;
+                    }
+
+                    .input_text {
+                        resize: none;
+                    }
+
+                    .logo {
+                        // width: 70px;
+                    }
+
+                    // .input_text_collapse_out {
+                    //     height: 50px;
+                    // }
+
+                    // .input_text_collapse_in {
+                    //     height: 0;
+                    // }
+
+            .input_text_collapse_in {
+                height: 20px;
+            }
+
+            .input_text_collapse_out {
+                height: 50px;
+            }
+        }
+
+        .btn {
+            width: 50%;
+        }
+    }
+}
