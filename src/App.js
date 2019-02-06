@@ -99,8 +99,11 @@ class App extends React.Component {
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
       <div className="App">
-        <Column arr={arrItems} />
-        <button className="btn" onClick={this.handlePlus}>+</button>
+        <div className="iphone-top"></div>
+        <div className="screen">
+          <Column arr={arrItems} />
+        </div>
+          <button className="btn" onClick={this.handlePlus}>+</button>
       </div>
       </DragDropContext>
     )

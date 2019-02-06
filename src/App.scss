@@ -5,67 +5,87 @@
 }
 
 html, body {
-    background-color: antiquewhite;
-    background-image: url('/images/3061674.jpg');
-    background-size: 185% 180%;
-    background-position: 22% 60%;
     font-size: 16px;
+    background-color: whitesmoke;
 
-    .App {
+    .App, .screen {
+        position: relative;
         display: flex;
         flex-direction: column;
-        padding: 20px;
+        max-height: 600px;
+        min-height: 600px;
+        padding: 20px 15px 10px;
         align-items: center;
         border: 1px solid #000;
-        border-radius: 1rem;
+        border-radius: 3rem;
+        box-shadow: 10px 10px 10px grey;
         background-color: #000;
+        overflow: scroll;
 
-        .card {
-            @extend %flexbox;
-            width: 350px;
+        .iphone-top {
+            position: absolute;
+            top: 18px; left: 30%;
+            width: 40%;
+            height: 20px;
+            border-radius: 0 0 15px 15px;
+            background-color: #000;
+            z-index: 999;
+        }
 
-                    .input_name,
-                    .input_text {
-                    display: block;
-                    width: 100%;
-                    // height: 100%;
-                    }
+        .screen {
+            min-height: 500px;
+            padding: 20px;
+            border-radius: 2rem 2rem 0 0;
+            box-shadow: none;
+            background-color: #fff;
 
-                    .input_text {
-                        resize: none;
-                    }
-
-                    .logo {
-                        // width: 70px;
-                    }
-
-                    // .input_text_collapse_out {
-                    //     height: 50px;
-                    // }
-
-                    // .input_text_collapse_in {
-                    //     height: 0;
-                    // }
-
-            .input_text_collapse_in {
-                height: 20px;
-            }
-
-            .input_text_collapse_out {
-                height: 50px;
+            .card {
+                @extend %flexbox;
+                width: 320px;
+    
+                        .input_name,
+                        .input_text {
+                        display: block;
+                        width: 100%;
+                        }
+    
+                        .input_text {
+                            resize: none;
+                        }
+    
+                        .logo {
+                            // width: 70px;
+                        }
+    
+                        // .input_text_collapse_out {
+                        //     height: 50px;
+                        // }
+    
+                        // .input_text_collapse_in {
+                        //     height: 0;
+                        // }
+    
+                .input_text_collapse_in {
+                    height: 20px;
+                }
+    
+                .input_text_collapse_out {
+                    height: 50px;
+                }
             }
         }
 
         .btn {
             width: 50px;
             height: 50px;
-            margin-top: 15px;
+            margin-top: 10px;
             padding-bottom: 5px;
             border-radius: 50%;
             font-size: 2rem;
             outline: none;
-            border: none;
+            border: 1px solid #000;
             cursor: pointer;
+            opacity: 0.2;
         }
     }
 }
