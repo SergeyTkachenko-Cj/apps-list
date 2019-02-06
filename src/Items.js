@@ -5,7 +5,8 @@ const Items = [
         finished: false,
         valueName: '',
         valueText: '',
-        menu: false
+        menu: false,
+        color: '#1d76f2'
     }
 ]
 

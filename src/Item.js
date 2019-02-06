@@ -1,6 +1,5 @@
 import React from "react";
 import {Draggable} from 'react-beautiful-dnd';
-import logo from './app-store-1.svg';
 import Svg from './Svg.js';
 
 function Item(props) {
@@ -17,8 +16,7 @@ function Item(props) {
                 {...provided.dragHandleProps}
                 >
             <div className="card">
-                    {/* <img className="logo" src={logo} alt="app-logo"/> */}
-                    <Svg nextClr={props.id} />
+                    <Svg nextClr={props.prps.color} />
                     <input 
                         type="text"
                         className="input_name" 

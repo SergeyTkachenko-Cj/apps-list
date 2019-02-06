@@ -20,7 +20,6 @@ html, body {
         border-radius: 3rem;
         box-shadow: 10px 10px 10px grey;
         background-color: #000;
-        overflow: scroll;
 
         .iphone-top {
             position: absolute;
@@ -34,10 +33,12 @@ html, body {
 
         .screen {
             min-height: 500px;
+            height: 500px;
             padding: 20px;
             border-radius: 2rem 2rem 0 0;
             box-shadow: none;
             background-color: #fff;
+            overflow: scroll;
 
             .card {
                 @extend %flexbox;
@@ -52,18 +53,6 @@ html, body {
                         .input_text {
                             resize: none;
                         }
-    
-                        .logo {
-                            // width: 70px;
-                        }
-    
-                        // .input_text_collapse_out {
-                        //     height: 50px;
-                        // }
-    
-                        // .input_text_collapse_in {
-                        //     height: 0;
-                        // }
     
                 .input_text_collapse_in {
                     height: 20px;

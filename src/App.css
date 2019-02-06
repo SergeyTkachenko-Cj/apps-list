@@ -20,7 +20,6 @@ html .App, html .screen, body .App, body .screen {
   border-radius: 3rem;
   box-shadow: 10px 10px 10px grey;
   background-color: #000;
-  overflow: scroll;
 }
 html .App .iphone-top, html .screen .iphone-top, body .App .iphone-top, body .screen .iphone-top {
   position: absolute;
@@ -34,10 +33,12 @@ html .App .iphone-top, html .screen .iphone-top, body .App .iphone-top, body .sc
 }
 html .App .screen, html .screen .screen, body .App .screen, body .screen .screen {
   min-height: 500px;
+  height: 500px;
   padding: 20px;
   border-radius: 2rem 2rem 0 0;
   box-shadow: none;
   background-color: #fff;
+  overflow: scroll;
 }
 html .App .screen .card, html .screen .screen .card, body .App .screen .card, body .screen .screen .card {
   width: 320px;

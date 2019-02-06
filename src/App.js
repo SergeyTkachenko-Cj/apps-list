@@ -26,9 +26,26 @@ class App extends React.Component {
         text: 'Code',
         finished: false,
         valueName: '',
-        valueText: ''
+        valueText: '',
+        menu: false,
+        color: this.logoColorHandle()
       });
     })
+  }
+
+  logoColorHandle() {
+    const clrs = [
+      '#1d76f2', 
+      '#94b510', 
+      '#e32932', 
+      '#517b7d', 
+      '#52114e', 
+      '#cdd9a7'
+    ];
+    const x = clrs.findIndex(i => {
+      return this.state.todos[this.state.todos.length - 1].color === i
+    });
+    return clrs[x] === clrs[clrs.length - 1] ? '#1d76f2' : clrs[x + 1]
   }
 
   handleInput = (event, e, val) => {
@@ -104,7 +121,7 @@ class App extends React.Component {
           <Column arr={arrItems} />
         </div>
           <button className="btn" onClick={this.handlePlus}>+</button>
-      </div>
+        </div>
       </DragDropContext>
     )
   }
