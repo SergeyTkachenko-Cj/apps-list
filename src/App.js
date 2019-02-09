@@ -23,10 +23,11 @@ class App extends React.Component {
   handlePlus = () => {
     this.setState(prev => {
       return prev.todos.push({
-        text: 'Code',
+        text: ['Name', 'Info'],
         finished: false,
         valueName: '',
         valueText: '',
+        drag: false,
         menu: false,
         color: this.logoColorHandle()
       });
@@ -81,6 +82,16 @@ class App extends React.Component {
     }
   }
 
+  onDragStart = result => {
+    const {draggableId} = result;
+    this.setState(prev => {
+      return prev.todos.map((item, index) => {
+        if (draggableId.toString() === index) item.drag = false;
+        return item
+      });
+    });
+  }
+
   onDragEnd = result => {
     const {destination, source} = result;
 
@@ -95,6 +106,7 @@ class App extends React.Component {
     }
 
     const arr = [...this.state.todos];
+    arr.forEach(i => i.drag = true);
     const splce = arr.splice(source.index, 1);
     arr.splice(destination.index, 0, splce[0]);
 
@@ -114,7 +126,7 @@ class App extends React.Component {
                                                   />);
     
     return (
-      <DragDropContext onDragEnd={this.onDragEnd}>
+      <DragDropContext onDragEnd={this.onDragEnd} onDragStart={this.onDragStart}>
       <div className="App">
         <div className="iphone-top"></div>
         <div className="screen">

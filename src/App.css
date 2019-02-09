@@ -50,15 +50,29 @@ body .App .screen .card .input_text, body .screen .screen .card .input_name,
 body .screen .screen .card .input_text {
   display: block;
   width: 100%;
-}
-html .App .screen .card .input_text, html .screen .screen .card .input_text, body .App .screen .card .input_text, body .screen .screen .card .input_text {
   resize: none;
+  font-size: 1rem;
+  outline: none;
+  background-color: transparent;
 }
-html .App .screen .card .input_text_collapse_in, html .screen .screen .card .input_text_collapse_in, body .App .screen .card .input_text_collapse_in, body .screen .screen .card .input_text_collapse_in {
-  height: 20px;
+html .App .screen .card .input_name, html .screen .screen .card .input_name, body .App .screen .card .input_name, body .screen .screen .card .input_name {
+  height: 3rem;
+  margin: 0.5rem;
+  border: none;
+  border-bottom: 1px solid grey;
+  font-size: 1.5rem;
 }
-html .App .screen .card .input_text_collapse_out, html .screen .screen .card .input_text_collapse_out, body .App .screen .card .input_text_collapse_out, body .screen .screen .card .input_text_collapse_out {
-  height: 50px;
+html .App .screen .card .trans_on, html .screen .screen .card .trans_on, body .App .screen .card .trans_on, body .screen .screen .card .trans_on {
+  transition: height 0.5s;
+}
+html .App .screen .card .trans_off, html .screen .screen .card .trans_off, body .App .screen .card .trans_off, body .screen .screen .card .trans_off {
+  transition: none;
+}
+html .App .screen .card .in, html .screen .screen .card .in, body .App .screen .card .in, body .screen .screen .card .in {
+  height: 0px;
+}
+html .App .screen .card .out, html .screen .screen .card .out, body .App .screen .card .out, body .screen .screen .card .out {
+  height: 70px;
 }
 html .App .btn, html .screen .btn, body .App .btn, body .screen .btn {
   width: 50px;

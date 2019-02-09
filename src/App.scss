@@ -48,18 +48,39 @@ html, body {
                         .input_text {
                         display: block;
                         width: 100%;
+                        resize: none;
+                        font-size: 1rem;
+                        outline: none;
+                        // transition: height .5s;
+                        background-color: transparent;
+                        }
+
+                        .input_name {
+                            height: 3rem;
+                            margin: .5rem;
+                            border: none;
+                            border-bottom: 1px solid grey;
+                            font-size: 1.5rem;
+                        }
+                
+                        .trans_on {
+                            transition: height .5s;
+                        }
+
+                        .trans_off {
+                            transition: none;
                         }
     
-                        .input_text {
-                            resize: none;
-                        }
-    
-                .input_text_collapse_in {
-                    height: 20px;
+                .in {
+                    height: 0px;
+                    // border: none;
+                    // display: none;
                 }
     
-                .input_text_collapse_out {
-                    height: 50px;
+                .out {
+                    height: 70px;
+                    // border: 1px solid grey;
+                    // display: block;
                 }
             }
         }
