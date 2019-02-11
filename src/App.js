@@ -11,29 +11,6 @@ class App extends React.Component {
       todos: Items
     }
 
-  handleTick = e => {
-    this.setState(prev => {
-      return prev.todos.map(i => {
-        if (e === i) i.finished = !i.finished;
-        return i
-      });
-    });
-  }
-
-  handlePlus = () => {
-    this.setState(prev => {
-      return prev.todos.push({
-        text: ['Name', 'Info'],
-        finished: false,
-        valueName: '',
-        valueText: '',
-        drag: false,
-        menu: false,
-        color: this.logoColorHandle()
-      });
-    })
-  }
-
   logoColorHandle() {
     const clrs = [
       '#1d76f2', 
@@ -47,6 +24,20 @@ class App extends React.Component {
       return this.state.todos[this.state.todos.length - 1].color === i
     });
     return clrs[x] === clrs[clrs.length - 1] ? '#1d76f2' : clrs[x + 1]
+  }
+
+  handlePlus = () => {
+    this.setState(prev => {
+      return prev.todos.push({
+        text: ['Name', 'Info'],
+        finished: false,
+        valueName: '',
+        valueText: '',
+        drag: true,
+        menu: false,
+        color: this.logoColorHandle()
+      });
+    })
   }
 
   handleInput = (event, e, val) => {
@@ -74,43 +65,45 @@ class App extends React.Component {
     const newArr = [...this.state.todos];
     if (newArr.length > 1) {
       newArr.splice(e, 1);
-      this.setState(prev => {
-        return {
-          todos: prev.todos.filter(itm => newArr.indexOf(itm) > -1)
-        }
-      })
+      this.setState({todos: newArr}, 
+        () => {this.setState({todos: this.editStateDropdownTransit(false)},
+        () => {setTimeout(() => {this.setState({todos: this.editStateDropdownTransit(true)})}, 500)})
+      });
     }
   }
 
-  onDragStart = result => {
-    const {draggableId} = result;
-    this.setState(prev => {
-      return prev.todos.map((item, index) => {
-        if (draggableId.toString() === index) item.drag = false;
-        return item
-      });
-    });
+  editStateDropdownTransit = (onOrOff) => {
+      const arr = [...this.state.todos];
+      arr.forEach(i => i.drag = onOrOff);
+      return arr
+  }
+
+  onDragStart = () => {
+    this.setState({todos: this.editStateDropdownTransit(false)});
   }
 
   onDragEnd = result => {
     const {destination, source} = result;
 
     if (!destination) {
-      return;
+      this.setState({todos: this.editStateDropdownTransit(true)});
+      return
     }
     if (
       destination.droppableId === source.droppableId &&
       destination.index === source.index
     ) {
-      return;
+      this.setState({todos: this.editStateDropdownTransit(true)})
+      return
     }
 
     const arr = [...this.state.todos];
-    arr.forEach(i => i.drag = true);
     const splce = arr.splice(source.index, 1);
     arr.splice(destination.index, 0, splce[0]);
 
-    this.setState({todos: arr});
+    this.setState({todos: arr}, () => {
+      setTimeout(() => {this.setState({todos: this.editStateDropdownTransit(true)})}, 500)
+    });
   }
 
   render() {
