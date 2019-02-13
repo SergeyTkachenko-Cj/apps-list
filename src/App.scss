@@ -44,44 +44,83 @@ html, body {
                 @extend %flexbox;
                 width: 320px;
     
-                        .input_name,
-                        .input_text {
-                        display: block;
+                    .input_name,
+                    .input_text {
                         width: 100%;
-                        resize: none;
+                        display: block;
                         font-size: 1rem;
                         outline: none;
-                        // transition: height .5s;
+                        resize: none;
                         background-color: transparent;
-                        }
+                    }
 
-                        .input_name {
-                            height: 3rem;
-                            margin: .5rem;
-                            border: none;
-                            border-bottom: 1px solid grey;
-                            font-size: 1.5rem;
-                        }
+                    .input_text {
+                        min-height: 70px;
+                        overflow: hidden;
+                        background-color: #dee7d9;
+                    }
+
+                    .input_name {
+                        height: 3rem;
+                        margin: .5rem;
+                        border: none;
+                        border-bottom: 1px solid grey;
+                        font-size: 1.5rem;
+                    }
                 
-                        .trans_on {
-                            transition: height .5s;
-                        }
+                    // .trans_on {
+                    //     transition: height .5s;
+                    // }
 
-                        .trans_off {
-                            transition: none;
-                        }
+                    // .trans_off {
+                    //     transition: none;
+                    // }
     
-                .in {
-                    height: 0px;
-                    // border: none;
-                    // display: none;
-                }
+                    // .in {
+                    //     height: 0px !important;
+                    // }
+            
+                    // .out {
+                        // height: 70px !important;
+                        // height: auto !important;
+                    // }
+
+
+
+                    // textarea {
+                    //     overflow: hidden;
+                    //     width: 100%;
+                    //     height: 100%;
+                    //     box-sizing: border-box; 
+                    //     resize: none;  
+                    // }
+            }
+
+            .bambi {
+                overflow: hidden;
+                background-color: #59fc0e;
+                // padding: 10px;
+                // height: 0;
+            }
+
+            .trans_on {
+                transition: .5s;
+            }
+
+            .trans_off {
+                transition: none;
+            }
+
+            .in {
+                // height: 0px;
+                height: 0px;
+                // transform: translateY(-100%)
+            }
     
-                .out {
-                    height: 70px;
-                    // border: 1px solid grey;
-                    // display: block;
-                }
+            .out {
+                // height: 100px;
+                height: 100px;
+                // transform: translateY(100%)
             }
         }
 

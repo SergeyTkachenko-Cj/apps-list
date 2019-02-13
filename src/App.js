@@ -11,7 +11,7 @@ class App extends React.Component {
       todos: Items
     }
 
-  logoColorHandle() {
+  logoColorHandle = () => {
     const clrs = [
       '#1d76f2', 
       '#94b510', 
@@ -35,16 +35,20 @@ class App extends React.Component {
         valueText: '',
         drag: true,
         menu: false,
+        textAreaHeight: '',
         color: this.logoColorHandle()
       });
     })
   }
 
   handleInput = (event, e, val) => {
+    // console.log(event, e, val);
+
     event.persist();
     this.setState(prev => {
       return prev.todos.map(i => {
         if (e === i) {
+          // i[val] = event._targetInst.elementType === 'div' ? event.target.innerHTML : event.target.value;
           i[val] = event.target.value;
         }
         return i
@@ -52,10 +56,37 @@ class App extends React.Component {
     });
   }
 
+  // textAreaExpand = (event, e) => {    
+  //   event.persist();
+  //   this.setState(prev => {
+  //     return prev.todos.map(i => {
+  //       if (e === i) {
+  //         i.textAreaHeight = "";
+  //         i.textAreaHeight = event.target.scrollHeight + "px";
+  //       }
+  //       return i
+  //     })
+  //   });
+  // }
+
+  // handleDown = e => {
+  //   this.setState(prev => {
+  //     return prev.todos.map(i => {
+  //       if (e === i) i.menu = !i.menu;
+  //       return i
+  //     });
+  //   });
+  // }
+
   handleDown = e => {
+
+    // console.log(window.getComputedStyle(document.querySelector(`.class${e}`)).getPropertyValue("height"));
+
     this.setState(prev => {
       return prev.todos.map(i => {
-        if (e === i) i.menu = !i.menu;
+        if (e.prps === i) {
+          i.menu = !e.prps.menu ? window.getComputedStyle(document.querySelector(`.class${e.id}`)).getPropertyValue("height") : 0;
+        }
         return i
       });
     });
@@ -67,7 +98,7 @@ class App extends React.Component {
       newArr.splice(e, 1);
       this.setState({todos: newArr}, 
         () => {this.setState({todos: this.editStateDropdownTransit(false)},
-        () => {setTimeout(() => {this.setState({todos: this.editStateDropdownTransit(true)})}, 500)})
+        () => {setTimeout(() => {this.setState({todos: this.editStateDropdownTransit(true)})}, 0)})
       });
     }
   }
@@ -102,7 +133,7 @@ class App extends React.Component {
     arr.splice(destination.index, 0, splce[0]);
 
     this.setState({todos: arr}, () => {
-      setTimeout(() => {this.setState({todos: this.editStateDropdownTransit(true)})}, 500)
+      setTimeout(() => {this.setState({todos: this.editStateDropdownTransit(true)})}, 0)
     });
   }
 
@@ -111,10 +142,9 @@ class App extends React.Component {
                                                     key={index} 
                                                     id={index}
                                                     prps={item} 
-                                                    funcI={this.handleTick} 
                                                     funcII={this.handleDel}
                                                     funcIII={this.handleInput}
-                                                    funcIV={this.handleUp}
+                                                    // funcIV={this.textAreaExpand}
                                                     funcV={this.handleDown}
                                                   />);
     
