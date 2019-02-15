@@ -6,7 +6,7 @@ html .App .screen .card, html .screen .screen .card, body .App .screen .card, bo
 
 html, body {
   font-size: 16px;
-  background-color: whitesmoke;
+  background-image: url("swirl_pattern.png");
 }
 html .App, html .screen, body .App, body .screen {
   position: relative;
@@ -18,17 +18,18 @@ html .App, html .screen, body .App, body .screen {
   align-items: center;
   border: 1px solid #000;
   border-radius: 3rem;
-  box-shadow: 10px 10px 10px grey;
-  background-color: #000;
+  background-color: #d8caca;
 }
 html .App .iphone-top, html .screen .iphone-top, body .App .iphone-top, body .screen .iphone-top {
   position: absolute;
-  top: 18px;
+  top: 20px;
   left: 30%;
   width: 40%;
-  height: 20px;
+  height: 15px;
   border-radius: 0 0 15px 15px;
-  background-color: #000;
+  border: 1px solid #000;
+  border-top: none;
+  background-color: #d8caca;
   z-index: 999;
 }
 html .App .screen, html .screen .screen, body .App .screen, body .screen .screen {

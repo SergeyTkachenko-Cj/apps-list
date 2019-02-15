@@ -18,8 +18,13 @@ class App extends React.Component {
       '#e32932', 
       '#517b7d', 
       '#52114e', 
-      '#cdd9a7'
+      '#000'
     ];
+
+    // const clrs = [
+    //   '#fff'
+    // ];
+
     const x = clrs.findIndex(i => {
       return this.state.todos[this.state.todos.length - 1].color === i
     });

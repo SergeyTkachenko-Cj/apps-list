@@ -14,9 +14,4 @@ const Items = [
 
 export default Items;
 
-// Commit message:
-// textarea focus jump issue
-// flashy on scroll textarea overflow hidden fix
-// textarea resize package implementation
-
 

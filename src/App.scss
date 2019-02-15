@@ -6,7 +6,8 @@
 
 html, body {
     font-size: 16px;
-    background-color: whitesmoke;
+    // background-color: #838181;
+    background-image: url("swirl_pattern.png");
 
     .App, .screen {
         position: relative;
@@ -18,16 +19,19 @@ html, body {
         align-items: center;
         border: 1px solid #000;
         border-radius: 3rem;
-        box-shadow: 10px 10px 10px grey;
-        background-color: #000;
+        // box-shadow: 10px 10px 10px #5f7575;
+        // background-color: #000;
+        background-color: rgb(216, 202, 202);
 
         .iphone-top {
             position: absolute;
-            top: 18px; left: 30%;
+            top: 20px; left: 30%;
             width: 40%;
-            height: 20px;
+            height: 15px;
             border-radius: 0 0 15px 15px;
-            background-color: #000;
+            border: 1px solid #000;
+            border-top: none;
+            background-color: rgb(216, 202, 202);
             z-index: 999;
         }
 
