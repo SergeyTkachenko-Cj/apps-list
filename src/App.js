@@ -21,10 +21,6 @@ class App extends React.Component {
       '#000'
     ];
 
-    // const clrs = [
-    //   '#fff'
-    // ];
-
     const x = clrs.findIndex(i => {
       return this.state.todos[this.state.todos.length - 1].color === i
     });
@@ -39,21 +35,18 @@ class App extends React.Component {
         valueName: '',
         valueText: '',
         drag: true,
-        menu: false,
-        textAreaHeight: '',
+        menu: '0px',
+        downBtn: true,
         color: this.logoColorHandle()
       });
     })
   }
 
   handleInput = (event, e, val) => {
-    // console.log(event, e, val);
-
     event.persist();
     this.setState(prev => {
       return prev.todos.map(i => {
         if (e === i) {
-          // i[val] = event._targetInst.elementType === 'div' ? event.target.innerHTML : event.target.value;
           i[val] = event.target.value;
         }
         return i
@@ -61,85 +54,141 @@ class App extends React.Component {
     });
   }
 
-  // textAreaExpand = (event, e) => {    
-  //   event.persist();
-  //   this.setState(prev => {
-  //     return prev.todos.map(i => {
-  //       if (e === i) {
-  //         i.textAreaHeight = "";
-  //         i.textAreaHeight = event.target.scrollHeight + "px";
-  //       }
-  //       return i
-  //     })
-  //   });
-  // }
-
-  // handleDown = e => {
-  //   this.setState(prev => {
-  //     return prev.todos.map(i => {
-  //       if (e === i) i.menu = !i.menu;
-  //       return i
-  //     });
-  //   });
-  // }
-
   handleDown = e => {
+    const getDOMHeight = selector => {
+      return window.getComputedStyle(document.querySelector(selector)).getPropertyValue("height")
+    }
 
-    // console.log(window.getComputedStyle(document.querySelector(`.class${e}`)).getPropertyValue("height"));
+    const currentHeight = getDOMHeight(`.class_card${e.id}`); 
+    const wouldBeHeight = currentHeight === '0px' ? getDOMHeight(`.class_area${e.id}`) : '0px';
+    
 
-    this.setState(prev => {
-      return prev.todos.map(i => {
-        if (e.prps === i) {
-          i.menu = !e.prps.menu ? window.getComputedStyle(document.querySelector(`.class${e.id}`)).getPropertyValue("height") : 0;
-        }
-        return i
-      });
-    });
-  }
+    /* PROMISES */
+    
+    // const one = () => {
+    //   return new Promise(() => {
+    //     document.querySelector(`.class_card${e.id}`).style.height = currentHeight;
+    //   });
+    // }
+
+    // one().then(
+    //   new Promise(() => {
+    //     setTimeout(() => {document.querySelector(`.class_card${e.id}`).style.height = wouldBeHeight}, 1000)
+    //   })
+    // ).then(
+    //   setTimeout(() => {this.setState(prev => {
+    //               return prev.todos.map(i => {
+    //                 if (e.prps === i) {
+    //                   i.menu = wouldBeHeight === '0px' ? '0px' : 'auto';
+    //                 }
+    //                 return i
+    //               });
+    //             })
+    //           }, 1500)
+    // );
+
+    
+    /* ASYNC AWAIT */
+
+    // const promise = param => {
+    //   return new Promise((resolve, reject) => {
+    //     document.querySelector(`.class_card${e.id}`).style.height = param;
+    //     resolve();
+    //   });
+    // }
+
+    // const myFunc = async () => {
+    //   await promise(currentHeight);
+    //   setTimeout(() => {promise(wouldBeHeight)}, 0);
+    //   setTimeout(() => {
+    //     this.setState(prev => {
+    //           return prev.todos.map(i => {
+    //             if (e.prps === i) {
+    //               i.menu = wouldBeHeight === '0px' ? '0px' : 'auto';
+    //             }
+    //             return i
+    //           });
+    //         })
+    //   }, 500)
+    // }
+    // myFunc()
+
+
+    /* SETTIMEOUT */
+
+    const dropDownTrans = () => {
+      document.querySelector(`.class_card${e.id}`).style.height = currentHeight;
+      this.setState(prev => prev.todos.map(i => i.downBtn = !i.downBtn)); // disable down button
+      setTimeout(() => {
+        document.querySelector(`.class_card${e.id}`).style.height = wouldBeHeight;
+      }, 0);
+      setTimeout(() => {
+        this.setState(prev => {
+              return prev.todos.map(i => {
+                if (e.prps === i) {
+                  i.menu = wouldBeHeight === '0px' ? '0px' : 'auto';
+                }
+                return i
+              });
+            }, this.setState(prev => prev.todos.map(i => i.downBtn = !i.downBtn)))  // enable down button
+      }, 500)
+    }
+    dropDownTrans();
+}
 
   handleDel = e => {
     const newArr = [...this.state.todos];
     if (newArr.length > 1) {
       newArr.splice(e, 1);
-      this.setState({todos: newArr}, 
-        () => {this.setState({todos: this.editStateDropdownTransit(false)},
-        () => {setTimeout(() => {this.setState({todos: this.editStateDropdownTransit(true)})}, 0)})
-      });
+      this.setState({todos: newArr});
+
+      // this.setState({todos: newArr}, 
+      //   () => {this.setState({todos: this.editStateDropdownTransit(false)},
+      //   () => {setTimeout(() => {this.setState({todos: this.editStateDropdownTransit(true)})}, 0)})
+      // });
     }
   }
 
-  editStateDropdownTransit = (onOrOff) => {
-      const arr = [...this.state.todos];
-      arr.forEach(i => i.drag = onOrOff);
-      return arr
-  }
+  // editStateDropdownTransit = (onOrOff) => {
+  //     const arr = [...this.state.todos];
+  //     arr.forEach(i => i.drag = onOrOff);
+  //     return arr
+  // }
 
-  onDragStart = () => {
-    this.setState({todos: this.editStateDropdownTransit(false)});
-  }
+  // onDragStart = () => {
+    // this.setState({todos: this.editStateDropdownTransit(false)});
+
+    // this.setState(prev => {
+    //   return prev.todos.map(i => {
+    //       i.menu = '0px';
+    //     return i
+    //   });
+    // })
+  // }
 
   onDragEnd = result => {
     const {destination, source} = result;
 
     if (!destination) {
-      this.setState({todos: this.editStateDropdownTransit(true)});
+      // this.setState({todos: this.editStateDropdownTransit(true)});
       return
     }
     if (
       destination.droppableId === source.droppableId &&
       destination.index === source.index
     ) {
-      this.setState({todos: this.editStateDropdownTransit(true)})
+      // this.setState({todos: this.editStateDropdownTransit(true)})
       return
     }
 
     const arr = [...this.state.todos];
     const splce = arr.splice(source.index, 1);
     arr.splice(destination.index, 0, splce[0]);
+    this.setState({todos: arr});
 
-    this.setState({todos: arr}, () => {
-      setTimeout(() => {this.setState({todos: this.editStateDropdownTransit(true)})}, 0)
-    });
+    // this.setState({todos: arr}, () => {
+    //   setTimeout(() => {this.setState({todos: this.editStateDropdownTransit(true)})}, 0)
+    // });
   }
 
   render() {
@@ -147,10 +196,9 @@ class App extends React.Component {
                                                     key={index} 
                                                     id={index}
                                                     prps={item} 
-                                                    funcII={this.handleDel}
-                                                    funcIII={this.handleInput}
-                                                    // funcIV={this.textAreaExpand}
-                                                    funcV={this.handleDown}
+                                                    del={this.handleDel}
+                                                    inpt={this.handleInput}
+                                                    down={this.handleDown}
                                                   />);
     
     return (

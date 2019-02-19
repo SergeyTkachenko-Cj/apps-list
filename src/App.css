@@ -43,6 +43,7 @@ html .App .screen, html .screen .screen, body .App .screen, body .screen .screen
 }
 html .App .screen .card, html .screen .screen .card, body .App .screen .card, body .screen .screen .card {
   width: 320px;
+  overflow: hidden;
 }
 html .App .screen .card .input_name,
 html .App .screen .card .input_text, html .screen .screen .card .input_name,
@@ -59,7 +60,9 @@ body .screen .screen .card .input_text {
 html .App .screen .card .input_text, html .screen .screen .card .input_text, body .App .screen .card .input_text, body .screen .screen .card .input_text {
   min-height: 70px;
   overflow: hidden;
-  background-color: #dee7d9;
+  border: none;
+  padding: 0;
+  background-color: #c9c9c9;
 }
 html .App .screen .card .input_name, html .screen .screen .card .input_name, body .App .screen .card .input_name, body .screen .screen .card .input_name {
   height: 3rem;
@@ -68,21 +71,8 @@ html .App .screen .card .input_name, html .screen .screen .card .input_name, bod
   border-bottom: 1px solid grey;
   font-size: 1.5rem;
 }
-html .App .screen .bambi, html .screen .screen .bambi, body .App .screen .bambi, body .screen .screen .bambi {
-  overflow: hidden;
-  background-color: #59fc0e;
-}
 html .App .screen .trans_on, html .screen .screen .trans_on, body .App .screen .trans_on, body .screen .screen .trans_on {
   transition: 0.5s;
-}
-html .App .screen .trans_off, html .screen .screen .trans_off, body .App .screen .trans_off, body .screen .screen .trans_off {
-  transition: none;
-}
-html .App .screen .in, html .screen .screen .in, body .App .screen .in, body .screen .screen .in {
-  height: 0px;
-}
-html .App .screen .out, html .screen .screen .out, body .App .screen .out, body .screen .screen .out {
-  height: 100px;
 }
 html .App .btn, html .screen .btn, body .App .btn, body .screen .btn {
   width: 50px;

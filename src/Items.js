@@ -6,8 +6,8 @@ const Items = [
         valueName: '',
         valueText: '',
         drag: true,
-        menu: false,
-        textAreaHeight: '',
+        menu: '0px',
+        downBtn: true,
         color: '#1d76f2'
     }
 ]
