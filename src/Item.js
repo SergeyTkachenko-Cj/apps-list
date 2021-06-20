@@ -26,9 +26,9 @@ const Item = props => {
                             value={props.prps.valueName}
                         >
                         </input>
-                        <div>
-                            <button onClick={() => props.del(props.id)}>del</button>
-                            <button onClick={() => props.prps.downBtn ? 
+                        <div className="btn_cvr_div">
+                            <button className="side_btn" onClick={() => props.del(props.id)}>x</button>
+                            <button className="side_btn" onClick={() => props.prps.downBtn ? 
                                                    props.down(props) :
                                                    null}>&darr;</button>
                         </div>

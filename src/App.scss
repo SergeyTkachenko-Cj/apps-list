@@ -6,21 +6,18 @@
 
 html, body {
     font-size: 16px;
-    // background-color: #838181;
     background-image: url("swirl_pattern.png");
 
     .App, .screen {
+        @extend %flexbox;
         position: relative;
-        display: flex;
         flex-direction: column;
-        max-height: 600px;
-        min-height: 600px;
+        justify-content: start;
+        // max-height: 600px;
+        // min-height: 600px;
         padding: 20px 15px 10px;
-        align-items: center;
         border: 1px solid #000;
         border-radius: 3rem;
-        // box-shadow: 10px 10px 10px #5f7575;
-        // background-color: #000;
         background-color: rgb(216, 202, 202);
 
         .iphone-top {
@@ -36,7 +33,7 @@ html, body {
         }
 
         .screen {
-            min-height: 500px;
+            // min-height: 500px;
             height: 500px;
             padding: 20px;
             border-radius: 2rem 2rem 0 0;
@@ -48,14 +45,14 @@ html, body {
                 @extend %flexbox;
                 width: 320px;
                 overflow: hidden;
+                outline: none;
     
                     .input_name,
                     .input_text {
                         width: 100%;
-                        display: block;
+                        // display: block;
                         font-size: 1rem;
                         outline: none;
-                        resize: none;
                         background-color: transparent;
                     }
 
@@ -64,6 +61,7 @@ html, body {
                         overflow: hidden;
                         border: none;
                         padding: 0;
+                        resize: none;
                         background-color: #c9c9c9;
                     }
 
@@ -74,17 +72,27 @@ html, body {
                         border-bottom: 1px solid grey;
                         font-size: 1.5rem;
                     }
+
+                    .btn_cvr_div {
+                        @extend %flexbox;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        height: 3.5rem;
+
+                            .side_btn {
+                                border: none;
+                                width: 100%;
+                                outline: none;
+                                cursor: pointer;
+                                font-size: 1.1rem;
+                                background-color: transparent;
+                            }
+                    }
             }
 
             .trans_on {
                 transition: .5s;
-                // display: block;
             }
-
-            // .trans_off {
-            //     // transition: none;
-            //     display: none;
-            // }
         }
 
         .btn {

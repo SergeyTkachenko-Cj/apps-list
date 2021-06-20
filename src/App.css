@@ -1,4 +1,4 @@
-html .App .screen .card, html .screen .screen .card, body .App .screen .card, body .screen .screen .card {
+html .App .screen .card .btn_cvr_div, html .screen .screen .card .btn_cvr_div, body .App .screen .card .btn_cvr_div, body .screen .screen .card .btn_cvr_div, html .App .screen .card, html .screen .screen .card, body .App .screen .card, body .screen .screen .card, html .App, html .screen, body .App, body .screen {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,12 +10,9 @@ html, body {
 }
 html .App, html .screen, body .App, body .screen {
   position: relative;
-  display: flex;
   flex-direction: column;
-  max-height: 600px;
-  min-height: 600px;
+  justify-content: start;
   padding: 20px 15px 10px;
-  align-items: center;
   border: 1px solid #000;
   border-radius: 3rem;
   background-color: #d8caca;
@@ -33,7 +30,6 @@ html .App .iphone-top, html .screen .iphone-top, body .App .iphone-top, body .sc
   z-index: 999;
 }
 html .App .screen, html .screen .screen, body .App .screen, body .screen .screen {
-  min-height: 500px;
   height: 500px;
   padding: 20px;
   border-radius: 2rem 2rem 0 0;
@@ -44,6 +40,7 @@ html .App .screen, html .screen .screen, body .App .screen, body .screen .screen
 html .App .screen .card, html .screen .screen .card, body .App .screen .card, body .screen .screen .card {
   width: 320px;
   overflow: hidden;
+  outline: none;
 }
 html .App .screen .card .input_name,
 html .App .screen .card .input_text, html .screen .screen .card .input_name,
@@ -51,10 +48,8 @@ html .screen .screen .card .input_text, body .App .screen .card .input_name,
 body .App .screen .card .input_text, body .screen .screen .card .input_name,
 body .screen .screen .card .input_text {
   width: 100%;
-  display: block;
   font-size: 1rem;
   outline: none;
-  resize: none;
   background-color: transparent;
 }
 html .App .screen .card .input_text, html .screen .screen .card .input_text, body .App .screen .card .input_text, body .screen .screen .card .input_text {
@@ -62,6 +57,7 @@ html .App .screen .card .input_text, html .screen .screen .card .input_text, bod
   overflow: hidden;
   border: none;
   padding: 0;
+  resize: none;
   background-color: #c9c9c9;
 }
 html .App .screen .card .input_name, html .screen .screen .card .input_name, body .App .screen .card .input_name, body .screen .screen .card .input_name {
@@ -70,6 +66,19 @@ html .App .screen .card .input_name, html .screen .screen .card .input_name, bod
   border: none;
   border-bottom: 1px solid grey;
   font-size: 1.5rem;
+}
+html .App .screen .card .btn_cvr_div, html .screen .screen .card .btn_cvr_div, body .App .screen .card .btn_cvr_div, body .screen .screen .card .btn_cvr_div {
+  flex-direction: column;
+  justify-content: space-between;
+  height: 3.5rem;
+}
+html .App .screen .card .btn_cvr_div .side_btn, html .screen .screen .card .btn_cvr_div .side_btn, body .App .screen .card .btn_cvr_div .side_btn, body .screen .screen .card .btn_cvr_div .side_btn {
+  border: none;
+  width: 100%;
+  outline: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  background-color: transparent;
 }
 html .App .screen .trans_on, html .screen .screen .trans_on, body .App .screen .trans_on, body .screen .screen .trans_on {
   transition: 0.5s;

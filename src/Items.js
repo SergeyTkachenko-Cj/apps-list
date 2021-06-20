@@ -1,7 +1,7 @@
 
 const Items = [
     {
-        text: ['Name', 'Info'],
+        text: ['App Name', 'Info'],
         finished: false,
         valueName: '',
         valueText: '',

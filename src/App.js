@@ -28,18 +28,12 @@ class App extends React.Component {
   }
 
   handlePlus = () => {
+    const newItems = JSON.parse(JSON.stringify(Items));
+    newItems[0].color = this.logoColorHandle();
+
     this.setState(prev => {
-      return prev.todos.push({
-        text: ['Name', 'Info'],
-        finished: false,
-        valueName: '',
-        valueText: '',
-        drag: true,
-        menu: '0px',
-        downBtn: true,
-        color: this.logoColorHandle()
-      });
-    })
+      return prev.todos.push(newItems[0])
+    });
   }
 
   handleInput = (event, e, val) => {
@@ -61,64 +55,10 @@ class App extends React.Component {
 
     const currentHeight = getDOMHeight(`.class_card${e.id}`); 
     const wouldBeHeight = currentHeight === '0px' ? getDOMHeight(`.class_area${e.id}`) : '0px';
-    
-
-    /* PROMISES */
-    
-    // const one = () => {
-    //   return new Promise(() => {
-    //     document.querySelector(`.class_card${e.id}`).style.height = currentHeight;
-    //   });
-    // }
-
-    // one().then(
-    //   new Promise(() => {
-    //     setTimeout(() => {document.querySelector(`.class_card${e.id}`).style.height = wouldBeHeight}, 1000)
-    //   })
-    // ).then(
-    //   setTimeout(() => {this.setState(prev => {
-    //               return prev.todos.map(i => {
-    //                 if (e.prps === i) {
-    //                   i.menu = wouldBeHeight === '0px' ? '0px' : 'auto';
-    //                 }
-    //                 return i
-    //               });
-    //             })
-    //           }, 1500)
-    // );
-
-    
-    /* ASYNC AWAIT */
-
-    // const promise = param => {
-    //   return new Promise((resolve, reject) => {
-    //     document.querySelector(`.class_card${e.id}`).style.height = param;
-    //     resolve();
-    //   });
-    // }
-
-    // const myFunc = async () => {
-    //   await promise(currentHeight);
-    //   setTimeout(() => {promise(wouldBeHeight)}, 0);
-    //   setTimeout(() => {
-    //     this.setState(prev => {
-    //           return prev.todos.map(i => {
-    //             if (e.prps === i) {
-    //               i.menu = wouldBeHeight === '0px' ? '0px' : 'auto';
-    //             }
-    //             return i
-    //           });
-    //         })
-    //   }, 500)
-    // }
-    // myFunc()
-
-
-    /* SETTIMEOUT */
 
     const dropDownTrans = () => {
       document.querySelector(`.class_card${e.id}`).style.height = currentHeight;
-      this.setState(prev => prev.todos.map(i => i.downBtn = !i.downBtn)); // disable down button
+      this.setState(prev => prev.todos.map(i => i.downBtn = !i.downBtn));   // disable down button
       setTimeout(() => {
         document.querySelector(`.class_card${e.id}`).style.height = wouldBeHeight;
       }, 0);
@@ -141,43 +81,19 @@ class App extends React.Component {
     if (newArr.length > 1) {
       newArr.splice(e, 1);
       this.setState({todos: newArr});
-
-      // this.setState({todos: newArr}, 
-      //   () => {this.setState({todos: this.editStateDropdownTransit(false)},
-      //   () => {setTimeout(() => {this.setState({todos: this.editStateDropdownTransit(true)})}, 0)})
-      // });
     }
   }
-
-  // editStateDropdownTransit = (onOrOff) => {
-  //     const arr = [...this.state.todos];
-  //     arr.forEach(i => i.drag = onOrOff);
-  //     return arr
-  // }
-
-  // onDragStart = () => {
-    // this.setState({todos: this.editStateDropdownTransit(false)});
-
-    // this.setState(prev => {
-    //   return prev.todos.map(i => {
-    //       i.menu = '0px';
-    //     return i
-    //   });
-    // })
-  // }
 
   onDragEnd = result => {
     const {destination, source} = result;
 
     if (!destination) {
-      // this.setState({todos: this.editStateDropdownTransit(true)});
       return
     }
     if (
       destination.droppableId === source.droppableId &&
       destination.index === source.index
     ) {
-      // this.setState({todos: this.editStateDropdownTransit(true)})
       return
     }
 
@@ -185,10 +101,6 @@ class App extends React.Component {
     const splce = arr.splice(source.index, 1);
     arr.splice(destination.index, 0, splce[0]);
     this.setState({todos: arr});
-
-    // this.setState({todos: arr}, () => {
-    //   setTimeout(() => {this.setState({todos: this.editStateDropdownTransit(true)})}, 0)
-    // });
   }
 
   render() {
